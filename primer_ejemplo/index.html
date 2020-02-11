@@ -10,6 +10,7 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
     <div id="app">
+        <button @click="changeVisibility">Mostrar/Ocultar</button>
         <ul v-if="mostrar">
             <li v-for="(show,index) in tvshows" :key="index">
                 <strong>{{show.nombre}}</strong> ({{show.temporadas}} Temporadas)
@@ -37,6 +38,11 @@
                     nombre: 'Battlestaz Galactica',
                     temporadas: 4
                 }]
+            },
+            methods: {
+                changeVisibility: function() {
+                    this.mostrar = !this.mostrar
+                }
             }
         })
     </script>
