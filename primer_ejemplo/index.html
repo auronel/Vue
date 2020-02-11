@@ -10,16 +10,20 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
     <div id="app">
-        <ul>
+        <ul v-if="mostrar">
             <li v-for="(show,index) in tvshows" :key="index">
                 <strong>{{show.nombre}}</strong> ({{show.temporadas}} Temporadas)
             </li>
         </ul>
+        <div v-else>
+            No hay datos
+        </div>
     </div>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
+                mostrar: true,
                 tvshows: [{
                     nombre: 'Jugo de tronos',
                     temporadas: 7
