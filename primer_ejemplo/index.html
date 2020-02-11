@@ -10,13 +10,29 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
     <div id="app">
-        {{mensaje}}
+        <ul>
+            <li v-for="(show,index) in tvshows" :key="index">
+                <strong>{{show.nombre}}</strong> ({{show.temporadas}} Temporadas)
+            </li>
+        </ul>
     </div>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
-                mensaje: 'Hola Vue js'
+                tvshows: [{
+                    nombre: 'Jugo de tronos',
+                    temporadas: 7
+                }, {
+                    nombre: 'Breaking bad',
+                    temporadas: 5
+                }, {
+                    nombre: 'Perdidos',
+                    temporadas: 6
+                }, {
+                    nombre: 'Battlestaz Galactica',
+                    temporadas: 4
+                }]
             }
         })
     </script>
