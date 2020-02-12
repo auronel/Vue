@@ -11,18 +11,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
     <div id="app">
         <button @click="changeVisibility">Mostrar/Ocultar</button>
-        <ul v-if="mostrar">
-            <tv-show v-for="(show,index) in tvshows" :key="index" :nombre="show.nombre" :temporadas="show.temporadas">
-            </tv-show>
-            <!-- <li v-for="(show,index) in tvshows" :key="index">
+        <!-- <ul v-if="mostrar"> -->
+        <!-- <tv-show v-for="(show,index) in tvshows" :key="index" :nombre="show.nombre" :temporadas="show.temporadas">
+            </tv-show> -->
+        <!-- <li v-for="(show,index) in tvshows" :key="index">
                 <strong>{{show.nombre}}</strong> ({{show.temporadas}} Temporadas)
             </li> -->
-        </ul>
+        <!-- </ul> -->
+        <tv-show-list></tv-show-list>
         <div v-else>
             No hay datos
         </div>
     </div>
     <script>
+        Vue.component('tv-show-list', {
+            data: function() {
+                return {
+                    tvshows: [{
+                        nombre: 'Jugo de tronos',
+                        temporadas: 7
+                    }, {
+                        nombre: 'Breaking bad',
+                        temporadas: 5
+                    }, {
+                        nombre: 'Perdidos',
+                        temporadas: 6
+                    }, {
+                        nombre: 'Battlestaz Galactica',
+                        temporadas: 4
+                    }]
+                }
+            },
+            template: `
+            <ul>
+                <tv-show v-for="(show,index) in tvshows" :key="index" :nombre="show.nombre" :temporadas="show.temporadas"></tv-show>
+            </ul>`
+        });
+
         Vue.component('tv-show', {
             props: {
                 nombre: String,
@@ -39,19 +64,6 @@
             el: '#app',
             data: {
                 mostrar: true,
-                tvshows: [{
-                    nombre: 'Jugo de tronos',
-                    temporadas: 7
-                }, {
-                    nombre: 'Breaking bad',
-                    temporadas: 5
-                }, {
-                    nombre: 'Perdidos',
-                    temporadas: 6
-                }, {
-                    nombre: 'Battlestaz Galactica',
-                    temporadas: 4
-                }]
             },
             methods: {
                 changeVisibility: function() {
