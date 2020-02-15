@@ -17,14 +17,14 @@
                     <input type='text' v-model="title"/>
                     <button @click="onClick">Añadir</button>
                 </div>`,
-            data: function() {
+            data: function () {
                 return {
                     title: null
                 }
             },
             methods: {
-                onClick: function() {
-                    console.log(this.title);
+                onClick: function () {
+                    this.$emit('new', { title: this.title });
                 }
             }
         });
@@ -62,8 +62,13 @@
             template: `
                 <div>
                     <todo-list :todos="todos"></todo-list>
-                    <todo-add></todo-add>
-                </div>`
+                    <todo-add @new='addNewTodo'></todo-add>
+                </div>`,
+            methods: {
+                addNewTodo: function (todo) {
+                    this.todos.push(todo);
+                }
+            }
         });
     </script>
 </body>
